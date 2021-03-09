@@ -58,6 +58,7 @@ function updataed(items){
           str += '<div class="listdata"><a href="#" data-index=' + i + ' />刪除</a> <span> 狀態 : <h1>' + items[i].condiction + '</h1> BMI :'+items[i].weight+' 體重 : '+items[i].kg+'kg 身高 : '+items[i].meter+'cm</span></div>';
         }
         list.innerHTML = str;
+
     }
 }
 
@@ -66,9 +67,15 @@ function kill(e){
     if(e.target.nodeName !== 'A'){return};
     var index = e.target.dataset.index;
     data.splice(index,1);
-    localStorage.setItem('listData',JSON.stringify(data));
+    localStorage.setItem('List',JSON.stringify(data));
     updataed(data);
 }
 
 list.addEventListener('click',kill,false)
 snedData.addEventListener('click',addList,false);
+
+function deleteall(){
+    localStorage.clear();
+    data=[];
+    list.innerHTML = '尚無資料';
+}
